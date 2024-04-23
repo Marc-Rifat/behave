@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    PYTHON="/Library/Frameworks/Python.framework/Versions/3.12/bin/python3"
+                    PYTHON="/usr/bin/python3"
                     $PYTHON -m venv myenv
                     source myenv/bin/activate
                     '''
