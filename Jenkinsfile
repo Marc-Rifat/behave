@@ -6,6 +6,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                    #!/bin/bash
                     PYTHON="/usr/bin/python3"
                     $PYTHON -m venv myenv
                     source myenv/bin/activate
@@ -17,7 +18,11 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'source myenv/bin/activate && pip install -r requirements.txt'
+                    sh '''
+                    #!/bin/bash
+                    source myenv/bin/activate
+                    pip install -r requirements.txt
+                    '''
                 }
             }
         }
@@ -25,9 +30,10 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    sh 'source myenv/bin/activate && behave'
+                    sh '''
+                    #!/bin/bash
+                    source myenv/bin/activate
+                    behave
+                    '''
                 }
             }
-        }
-    }
-}
